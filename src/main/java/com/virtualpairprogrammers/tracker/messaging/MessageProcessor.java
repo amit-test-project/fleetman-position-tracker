@@ -22,7 +22,7 @@ public class MessageProcessor {
 
 	@Value("${fleetman.position.queue}")
 	private String queueName;
-	
+
 	@JmsListener(destination="${fleetman.position.queue}")
 	public void processPositionMessageFromQueue(Map<String, String> incomingMessage ) throws ParseException
 	{
@@ -32,7 +32,7 @@ public class MessageProcessor {
 				                          .withName(incomingMessage.get("vehicle"))
 				                          .withLat(new BigDecimal(incomingMessage.get("lat")))
 				                          .withLng(new BigDecimal(incomingMessage.get("long")))
-																	.withSpeed(47.5)
+																	.withSpeed(new BigDecimal("47.5"))
 				                          .withTimestamp(convertedDatestamp)
 				                          .build();
 
